@@ -27,6 +27,7 @@ module ConcurseiroDate
     config.i18n.available_locales = [:es, :en, :'pt-BR']
     config.i18n.default_locale = :'pt-BR'
 
+    config.active_job.queue_adapter = :sidekiq
 
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.

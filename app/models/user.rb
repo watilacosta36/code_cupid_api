@@ -2,15 +2,21 @@
 #
 # Table name: users
 #
-#  id           :bigint           not null, primary key
-#  birthdate    :date
-#  email        :string
-#  first_name   :string
-#  gender       :string
-#  last_name    :string
-#  phone_number :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id              :bigint           not null, primary key
+#  birthdate       :date
+#  confirmed_at    :datetime
+#  email           :string
+#  first_name      :string
+#  gender          :string
+#  last_name       :string
+#  password_digest :string
+#  phone_number    :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+# Indexes
+#
+#  index_users_on_email  (email) UNIQUE
 #
 class User < ApplicationRecord
   has_secure_password validations: false

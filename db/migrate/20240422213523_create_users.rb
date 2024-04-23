@@ -8,6 +8,8 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.date :birthdate
       t.string :gender
       t.string :password_digest
+      t.datetime :confirmed_at
+      t.string :confirmation_code
 
       t.timestamps
     end

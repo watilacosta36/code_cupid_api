@@ -17,6 +17,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 gem "rack-cors"
+gem 'sidekiq'
 gem 'twilio-ruby', '~> 7.0.2'
 
 group :development, :test do

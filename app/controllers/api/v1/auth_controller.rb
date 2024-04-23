@@ -23,7 +23,7 @@ module Api::V1
       result = Organizers::SignUp.call(params: permitted_params)
 
       if result.success?
-        render json: { user_id: result.user.id, message: I18n.t('activerecord.success.create') }, status: :created
+        render json: { message: I18n.t('activerecord.success.create') }, status: :created
       else
         render json: { error: result.error }, status: :unprocessable_entity
       end
@@ -32,9 +32,8 @@ module Api::V1
     private
 
     def render_not_found(e)
-      render json: {
-        error: I18n.t('activerecord.errors.record_not_found_with_email', email: permitted_params[:email])
-      }, status: :unauthorized
+      render json: { error: I18n.t('activerecord.errors.record_not_found_with_email', email: permitted_params[:email]) },
+             status: :unauthorized
 
       Rails.logger.error(e)
     end
