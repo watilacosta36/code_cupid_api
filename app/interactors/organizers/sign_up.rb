@@ -4,6 +4,6 @@ module Organizers
   class SignUp
     include Interactor::Organizer
 
-    organize ::User::CreateAccount#, ::User::SendConfirmationCode
+    organize ::User::CreateAccount, ::User::SendConfirmationCode
   end
 end
