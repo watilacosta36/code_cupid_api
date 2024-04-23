@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        birthdate: Birthdate
+        email:
+          invalid_format: "format is invalid"
+          taken: "has already been taken"
+          not_found: "not found"
+        first_name: First name
+        gender: Gender
+        last_name: Last name
+        phone_number: Phone number
+

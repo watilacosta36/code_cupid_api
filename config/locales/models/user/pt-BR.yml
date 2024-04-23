@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      user: Usuário
+    attributes:
+      user:
+        birthdate: Data de nascimento
+        email:
+          invalid_format: "formato não é válido"
+          taken: "já está em uso"
+          not_found: "não foi encontrado"
+        first_name: Nome
+        gender: Gênero
+        last_name: Sobrenome
+        phone_number: Telefone
