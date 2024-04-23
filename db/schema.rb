@@ -21,8 +21,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_22_213523) do
     t.string "last_name"
     t.date "birthdate"
     t.string "gender"
+    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
