@@ -14,9 +14,11 @@ en:
         first_name: First name
         gender: Gender
         last_name: Last name
-        phone_number: Phone number
+        phone_number: phone number
+        password: Password
     success:
       create: "User was successfully created."
     errors:
       record_not_found_with_email: "User with email %{email} was not found."
       invalid_credentials: "Invalid credentials."
+      password_too_short: "too short."

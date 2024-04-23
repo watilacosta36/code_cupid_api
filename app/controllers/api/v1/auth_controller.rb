@@ -23,7 +23,7 @@ module Api::V1
       result = Organizers::SignUp.call(params: permitted_params)
 
       if result.success?
-        render json: { message: I18n.t('activerecord.success.create') }, status: :created
+        render json: { user_id: result.user.id, message: I18n.t('activerecord.success.create') }, status: :created
       else
         render json: { error: result.error }, status: :unprocessable_entity
       end
@@ -44,7 +44,7 @@ module Api::V1
     end
 
     def permitted_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :gender, :phone_number)
+      params.require(:user).permit(:email, :password, :gender, :phone_number)
     end
   end
 end

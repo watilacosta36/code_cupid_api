@@ -8,15 +8,17 @@ pt-BR:
       user:
         birthdate: Data de nascimento
         email:
-          invalid_format: "formato não é válido"
+          invalid_format: "formato inválido"
           taken: "já está em uso"
-          not_found: "não foi encontrado"
+          not_found: "não encontrado"
         first_name: Nome
         gender: Gênero
         last_name: Sobrenome
-        phone_number: Telefone
+        phone_number: número de telefone
+        password: Senha
     success:
-      create: "Usuário foi criado com sucesso."
+      create: "Usuário criado com sucesso."
     errors:
-      record_not_found_with_email: "Usuário com email %{email} não foi encontrado."
+      record_not_found_with_email: "Usuário com o email %{email} não foi encontrado."
       invalid_credentials: "Credenciais inválidas."
+      password_too_short: "muito curta."
