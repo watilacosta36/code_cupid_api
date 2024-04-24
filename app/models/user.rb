@@ -13,6 +13,7 @@
 #  phone_number    :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  confirmation_code :string
 #
 # Indexes
 #

@@ -3,6 +3,7 @@ es:
   activerecord:
     errors:
       messages:
+        invalid_code: código inválido
         record_invalid: 'La validación falló: %{errors}'
         restrict_dependent_destroy:
           has_one: No se puede eliminar el registro porque existe un %{record} dependiente

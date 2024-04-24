@@ -3,6 +3,7 @@ en:
   activerecord:
     errors:
       messages:
+        invalid_code: invalid code
         record_invalid: 'Validation failed: %{errors}'
         restrict_dependent_destroy:
           has_one: Cannot delete record because a dependent %{record} exists

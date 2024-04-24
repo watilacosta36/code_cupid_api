@@ -1,7 +1,7 @@
 module Api::V1
   class AuthController < ApplicationController
-    before_action :authorize_resource, except: %i[ login sign_up ]
-    after_action :skip_authorization_method, only: %i[login sign_up]
+    before_action :authorize_resource, except: %i[ login sign_up confirm_account ]
+    after_action :skip_authorization_method, only: %i[login sign_up confirm_account ]
 
     def login
       user = User.find_by!(email: permitted_params[:email])
@@ -29,7 +29,25 @@ module Api::V1
       end
     end
 
+    def confirm_account
+      user = User.find_by!(email: permitted_params[:email])
+
+      return render json: { message: 'Cadastro confirmado' }, status: :ok if update_confirmation_status(user)
+
+      render json: { message: I18n.t('activerecord.errors.messages.invalid_code') }, status: :unprocessable_entity
+    rescue ActiveRecord::RecordInvalid => e
+      render json: { error: e.message }, status: :unprocessable_entity
+    rescue ActiveRecord::RecordNotFound => e
+      render_not_found(e)
+    end
+
     private
+
+    def update_confirmation_status(user)
+      return unless user.confirmation_code == permitted_params[:confirmation_code]
+
+      user.update_attribute(:confirmed_at, Time.zone.now)
+    end
 
     def render_not_found(e)
       render json: { error: I18n.t('activerecord.errors.record_not_found_with_email', email: permitted_params[:email]) },
@@ -43,7 +61,7 @@ module Api::V1
     end
 
     def permitted_params
-      params.require(:user).permit(:email, :password, :gender, :phone_number)
+      params.require(:user).permit(:email, :password, :gender, :phone_number, :confirmation_code)
     end
   end
 end
