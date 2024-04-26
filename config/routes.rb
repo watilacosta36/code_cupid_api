@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get "up" => "rails/health#show", as: :rails_health_check if Rails.env.development?
+  require 'sidekiq/web'
+
+  if Rails.env.development?
+    get "up" => "rails/health#show", as: :rails_health_check
+    mount Sidekiq::Web => "/sidekiq"
+  end
 
   namespace :api do
     namespace :v1 do
