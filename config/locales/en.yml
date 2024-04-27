@@ -216,3 +216,7 @@ en:
       long: "%B %d, %Y %I:%M %p"
       short: "%d %b %I:%M %p"
     pm: pm
+  auth:
+    success:
+      create: "We sent a confirmation code by SMS to the registered number. If you haven't received it, click on 'Resend code'."
+      resend_code: "Confirmation code resent successfully."

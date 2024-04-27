@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       post 'auth/sign_up', to: 'auth#sign_up'
       post 'auth/login', to: 'auth#login'
       patch 'auth/confirm_account', to: 'auth#confirm_account'
+      post 'auth/resend_code', to: 'auth#resend_code'
     end
   end
 end

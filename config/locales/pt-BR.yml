@@ -224,3 +224,7 @@ pt-BR:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: pm
+  auth:
+    success:
+      create: "Enviamos um código de confirmação por SMS para o número cadastrado. Caso não tenha recebido, clique em 'Reenviar código'."
+      resend_code: "Código de confirmação reenviado com sucesso."

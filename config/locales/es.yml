@@ -220,3 +220,7 @@ es:
       long: "%-d de %B de %Y %H:%M"
       short: "%-d de %b %H:%M"
     pm: pm
+  auth:
+    success:
+      create: "Hemos enviado un código de confirmación por SMS al número registrado. Si no lo ha recibido, haga clic en 'Reenviar código'."
+      resend_code: "Código de confirmación reenviado con éxito."

@@ -16,9 +16,6 @@ pt-BR:
         last_name: Sobrenome
         phone_number: número de telefone
         password: Senha
-    success:
-      create: "Enviamos um código de confirmação por SMS para o número cadastrado.\
-              Caso não tenha recebido, clique em 'Reenviar código'."
     errors:
       record_not_found_with_email: "Usuário com o email %{email} não foi encontrado."
       invalid_credentials: "Credenciais inválidas."
