@@ -1,0 +1,73 @@
+# This is a basic configuration for RuboCop.
+# Check http://rubocop.readthedocs.io/en/latest/configuration/ for more options.
+
+# AllCops settings
+# These settings affect all cops. Some can be overridden within specific cops' config.
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'spec/**/*' # Assuming tests are in a `spec` directory, adjust if necessary
+
+# Customize these rules based on your preferences.
+# You can find more details about each cop and its options in the RuboCop documentation.
+# https://docs.rubocop.org/en/stable/cops/
+
+Style/Documentation:
+  Enabled: false
+
+# Layout/LineLength:
+#   Max: 120 # Adjust as per your project's requirements.
+
+# Style/FrozenStringLiteralComment:
+#   Enabled: true # If using Ruby 3.0+, this might be useful to enforce frozen string literals.
+
+# Naming/FileName:
+#   Exclude:
+#     - 'db/schema.rb' # You might want to exclude certain files from this cop.
+
+# Metrics/BlockLength:
+#   Exclude:
+#     - 'spec/**/*.rb' # Excluding test files if they tend to have longer blocks.
+
+# Metrics/MethodLength:
+#   Max: 20 # Adjust according to your preferences and team standards.
+
+# Metrics/AbcSize:
+#   Max: 15 # Adjust according to your preferences and team standards.
+
+# Rails:
+#   Enabled: true # Enable Rails related cops if it's a Rails API.
+
+# Lint:
+#   Enabled: true # Enable all linting cops.
+
+# Performance:
+#   Enabled: true # Enable performance related cops.
+
+# Style:
+#   Enabled: true # Enable style related cops.
+
+# Naming:
+#   Enabled: true # Enable naming related cops.
+
+# Bundler:
+#   Enabled: true # Enable Bundler related cops if needed.
+
+# Security:
+#   Enabled: true # Enable security related cops.
+
+# Lint/Syntax:
+#   Enabled: true # This is usually enabled by default.
+
+# Lint/UselessAssignment:
+#   Enabled: true # This can help catch unused variables.
+
+# Layout/EndOfLine:
+#   Enabled: true
+#   EnforcedStyle: lf # Or `crlf` depending on your platform and team preference.
+
+# Other settings...

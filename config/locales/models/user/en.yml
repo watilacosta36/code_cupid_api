@@ -4,6 +4,8 @@ en:
       user:
         one: User
         other: Users
+        confirm_account:
+          success: "Your account has been successfully confirmed."
     attributes:
       user:
         birthdate: Birthdate

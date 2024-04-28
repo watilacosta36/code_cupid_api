@@ -4,6 +4,8 @@ pt-BR:
       user:
         one: Usuário
         other: Usuários
+        confirm_account:
+          success: "Sua conta foi confirmada com sucesso."
     attributes:
       user:
         birthdate: Data de nascimento

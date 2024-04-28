@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TwilioClient
   TWILIO_ACCOUNT_SID = Rails.application.credentials.dig(:development, :twilio, :account_sid)
   TWILIO_AUTH_TOKEN = Rails.application.credentials.dig(:development, :twilio, :auth_token)
