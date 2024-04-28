@@ -10,8 +10,8 @@ class TwilioClient
   def send_message(to, body)
     @client.messages.create(
       from: TWILIO_PHONE_NUMBER,
-      to: to,
-      body: body
+      to:,
+      body:
     )
   end
 end

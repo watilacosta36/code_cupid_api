@@ -7,7 +7,7 @@ class User::CreateAccount
     user = User.new(context.params)
 
     context.user = user if user.save!
-  rescue ActiveRecord::RecordInvalid => error
-    context.fail!(error: error.message)
+  rescue ActiveRecord::RecordInvalid => e
+    context.fail!(error: e.message)
   end
 end

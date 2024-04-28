@@ -1,8 +1,8 @@
 module Api::V1
   class AuthController < ApplicationController
-    before_action :set_user_by_email, only: %i[ login resend_code confirm_account ]
-    before_action :authorize_resource, except: %i[ login sign_up confirm_account resend_code ]
-    after_action :skip_authorization_method, only: %i[login sign_up confirm_account resend_code ]
+    before_action :set_user_by_email, only: %i[login resend_code confirm_account]
+    before_action :authorize_resource, except: %i[login sign_up confirm_account resend_code]
+    after_action :skip_authorization_method, only: %i[login sign_up confirm_account resend_code]
 
     def login
       if @user&.authenticate(permitted_params[:password])
@@ -12,8 +12,8 @@ module Api::V1
       end
 
       render json: { error: I18n.t('activerecord.errors.invalid_credentials') }, status: :unauthorized
-    rescue JWT::EncodeError => jwt_error
-      render json: { error: jwt_error }, status: :internal_server_error
+    rescue JWT::EncodeError => e
+      render json: { error: e }, status: :internal_server_error
     end
 
     def sign_up
@@ -66,8 +66,7 @@ module Api::V1
     end
 
     def set_user_by_email
-      @user||= User.find_by!(email: permitted_params[:email])
-
+      @user ||= User.find_by!(email: permitted_params[:email])
     rescue ActiveRecord::RecordNotFound => e
       render_not_found(e)
     end
