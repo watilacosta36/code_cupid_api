@@ -20,6 +20,7 @@ gem 'rubocop', require: false
 gem 'sidekiq'
 gem 'twilio-ruby', '~> 7.0.2'
 gem 'tzinfo-data', platforms: %i[windows jruby]
+gem 'ruby-vips', '~> 2.2', '>= 2.2.1'
 # gem "redis", ">= 4.0.1"
 # gem "kredis"
 
