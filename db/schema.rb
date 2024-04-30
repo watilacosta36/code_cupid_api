@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_183823) do
     t.datetime "confirmed_at"
     t.string "confirmation_code"
     t.string "locale"
+    t.integer "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

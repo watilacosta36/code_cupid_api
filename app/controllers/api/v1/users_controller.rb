@@ -5,12 +5,6 @@ module Api
     class UsersController < ApplicationController
       before_action :set_user, only: %i[show update destroy]
 
-      def index
-        @users = User.all
-
-        render json: { user: @users }
-      end
-
       def show
         render json: @user
       end
@@ -44,7 +38,9 @@ module Api
       end
 
       def user_params
-        params.require(:user).permit(:email, :phone_number, :first_name, :last_name, :birthdate, :gender)
+        params.require(:user).permit(
+          :email, :phone_number, :first_name, :last_name, :birthdate, :gender, :role, images: []
+        )
       end
     end
   end

@@ -11,6 +11,7 @@ class CreateUsers < ActiveRecord::Migration[7.1]
       t.datetime :confirmed_at
       t.string :confirmation_code
       t.string :locale
+      t.integer :role
 
       t.timestamps
     end

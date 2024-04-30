@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module User
+module Auth
   class SendConfirmationCode
     include Interactor
 

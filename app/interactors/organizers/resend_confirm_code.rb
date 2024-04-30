@@ -4,7 +4,7 @@ module Organizers
   class ResendConfirmCode
     include Interactor::Organizer
 
-    organize User::SendConfirmationCode,
-             User::UpdateConfirmationCode
+    organize Auth::SendConfirmationCode,
+             Auth::UpdateConfirmationCode
   end
 end

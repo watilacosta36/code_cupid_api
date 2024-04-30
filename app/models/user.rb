@@ -16,6 +16,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  confirmation_code :string
+#  role            :string           default("auth")
 #
 # Indexes
 #
@@ -34,4 +35,9 @@ class User < ApplicationRecord
                        length: { minimum: 8, too_short: I18n.t('activerecord.errors.password_too_short') }
 
   validates_with EmailValidator
+
+  enum role: {
+    user: 0,
+    admin: 1
+  }
 end
