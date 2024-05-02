@@ -224,3 +224,6 @@ es:
     success:
       create: "Hemos enviado un código de confirmación por SMS al número registrado. Si no lo ha recibido, haga clic en 'Reenviar código'."
       resend_code: "Código de confirmación reenviado con éxito."
+  pundit:
+    user_image_policy:
+      create?: "No puedes crear una imagen de usuario."

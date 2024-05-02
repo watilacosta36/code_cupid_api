@@ -28,16 +28,13 @@ class User < ApplicationRecord
 
   REGEX_PHONE_NUMBER = /\A\+?\d{0,3}(\s|-)?\(?\d{3}\)?(\s|-)?\d{3}(\s|-)?\d{4}\z/
 
-  validates :email, presence: true, uniqueness: { message: I18n.t('activerecord.attributes.user.email.taken') }
   validates :gender, inclusion: { in: %w[m f o] }
   validates :phone_number, presence: true, format: { with: REGEX_PHONE_NUMBER }
+  validates :email, presence: true, uniqueness: { message: I18n.t('activerecord.attributes.user.email.taken') }
   validates :password, presence: true,
-                       length: { minimum: 8, too_short: I18n.t('activerecord.errors.password_too_short') }
+                       length: { minimum: 8, too_short: I18n.t('activerecord.errors.password_too_short') }, on: :create
 
   validates_with EmailValidator
 
-  enum role: {
-    user: 0,
-    admin: 1
-  }
+  enum role: { user: 0, admin: 1 }
 end

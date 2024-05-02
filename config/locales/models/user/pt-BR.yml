@@ -4,6 +4,7 @@ pt-BR:
       user:
         one: Usuário
         other: Usuários
+        not_found: "Usuário não encontrado."
         confirm_account:
           success: "Sua conta foi confirmada com sucesso."
     attributes:
@@ -18,6 +19,12 @@ pt-BR:
         last_name: Sobrenome
         phone_number: número de telefone
         password: Senha
+        images:
+          one: Imagem
+          other: Imagens
+          create:
+            success: "Imagens enviadas com sucesso"
+            error: "Imagens não enviadas"
     errors:
       record_not_found_with_email: "Usuário com o email %{email} não foi encontrado."
       invalid_credentials: "Credenciais inválidas."

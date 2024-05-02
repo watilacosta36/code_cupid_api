@@ -14,6 +14,9 @@ Rails.application.routes.draw do
       post 'auth/login', to: 'auth#login'
       patch 'auth/confirm_account', to: 'auth#confirm_account'
       post 'auth/resend_code', to: 'auth#resend_code'
+
+      # Create user images
+      post 'users_images/create'
     end
   end
 end
