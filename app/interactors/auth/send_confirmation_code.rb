@@ -5,11 +5,17 @@ module Auth
     include Interactor
 
     before do
-      context.code = SecureRandom.alphanumeric(4)
+      context.code          = SecureRandom.alphanumeric(4)
+      context.phone_number  = context.user.phone_number
+      context.twilio_client = TwilioClient.new
     end
 
     def call
-      TwilioMessageJob.perform_async(context.user.phone_number, context.code)
+      TwilioConfirmMessageJob.perform_now(
+        context.phone_number,
+        context.code,
+        context.twilio_client
+      )
     end
   end
 end

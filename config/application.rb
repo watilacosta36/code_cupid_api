@@ -27,7 +27,7 @@ module ConcurseiroDate
     config.i18n.available_locales = %i[es en pt-BR]
     config.i18n.default_locale = :'pt-BR'
 
-    config.active_job.queue_adapter = :sidekiq
+    # config.active_job.queue_adapter = :sidekiq
 
     # This also configures session_options for use below
     config.session_store :cookie_store, key: '_interslice_session'

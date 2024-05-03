@@ -231,3 +231,5 @@ pt-BR:
   pundit:
     user_image_policy:
       create?: "Você não pode criar imagens para outros usuários."
+  twilio:
+    confirm_message: "Seu código de confirmação é %{code}."
