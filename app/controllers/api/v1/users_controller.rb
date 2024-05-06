@@ -39,7 +39,14 @@ module Api
 
       def user_params
         params.require(:user).permit(
-          :email, :phone_number, :first_name, :last_name, :birthdate, :gender, :role, images: []
+          :email,
+          :phone_number,
+          :username,
+          :bio,
+          :birthdate,
+          :gender,
+          :role,
+          images: []
         )
       end
     end

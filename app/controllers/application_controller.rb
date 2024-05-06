@@ -23,9 +23,9 @@ class ApplicationController < ActionController::API
 
   private
 
-  def switch_locale(&action)
+  def switch_locale(&)
     locale = current_user.try(:locale) || I18n.default_locale
-    I18n.with_locale(locale, &action)
+    I18n.with_locale(locale, &)
   end
 
   def user_not_authorized(exception)

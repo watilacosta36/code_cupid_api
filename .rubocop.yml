@@ -4,6 +4,8 @@
 # AllCops settings
 # These settings affect all cops. Some can be overridden within specific cops' config.
 AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.3
   Exclude:
     - 'bin/**/*'
     - 'db/**/*'
@@ -19,22 +21,22 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
-# Layout/LineLength:
-#   Max: 120 # Adjust as per your project's requirements.
+Layout/LineLength:
+  Max: 120 # Adjust as per your project's requirements.
 
-# Style/FrozenStringLiteralComment:
-#   Enabled: true # If using Ruby 3.0+, this might be useful to enforce frozen string literals.
+Style/FrozenStringLiteralComment:
+  Enabled: true # If using Ruby 3.0+, this might be useful to enforce frozen string literals.
 
 # Naming/FileName:
 #   Exclude:
 #     - 'db/schema.rb' # You might want to exclude certain files from this cop.
 
-# Metrics/BlockLength:
-#   Exclude:
-#     - 'spec/**/*.rb' # Excluding test files if they tend to have longer blocks.
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb' # Excluding test files if they tend to have longer blocks.
 
-# Metrics/MethodLength:
-#   Max: 20 # Adjust according to your preferences and team standards.
+Metrics/MethodLength:
+  Max: 20 # Adjust according to your preferences and team standards.
 
 # Metrics/AbcSize:
 #   Max: 15 # Adjust according to your preferences and team standards.
@@ -57,11 +59,11 @@ Style/Documentation:
 # Bundler:
 #   Enabled: true # Enable Bundler related cops if needed.
 
-# Security:
-#   Enabled: true # Enable security related cops.
+Security:
+  Enabled: true # Enable security related cops.
 
-# Lint/Syntax:
-#   Enabled: true # This is usually enabled by default.
+Lint/Syntax:
+  Enabled: true # This is usually enabled by default.
 
 # Lint/UselessAssignment:
 #   Enabled: true # This can help catch unused variables.

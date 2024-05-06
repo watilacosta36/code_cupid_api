@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_03_011703) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_03_135711) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_011703) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index %w[blob_id variation_digest], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "matches", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "matched_user_id", null: false
+    t.datetime "matched_at", default: -> { "CURRENT_TIMESTAMP" }
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["matched_user_id"], name: "index_matches_on_matched_user_id"
+    t.index ["user_id"], name: "index_matches_on_user_id"
   end
 
   create_table "solid_queue_blocked_executions", force: :cascade do |t|
@@ -155,8 +165,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_011703) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "phone_number"
-    t.string "first_name"
-    t.string "last_name"
+    t.string "username"
+    t.text "bio"
     t.date "birthdate"
     t.string "gender"
     t.string "password_digest"
@@ -171,6 +181,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_03_011703) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "matches", "users"
+  add_foreign_key "matches", "users", column: "matched_user_id"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
