@@ -3,7 +3,8 @@
 class TwilioConfirmMessageJob < ApplicationJob
   queue_as :default
 
-  def perform(phone_number, code, twilio_client)
+  def perform(phone_number, code)
+    twilio_client = TwilioClient.new
     message = twilio_client.send_message(phone_number, I18n.t('twilio.confirm_message', code:))
 
     TwilioMessage.create!(phone_number:, twilio_message_sid: message.sid) if message.sid

@@ -7,14 +7,12 @@ module Auth
     before do
       context.code          = SecureRandom.alphanumeric(4)
       context.phone_number  = context.user.phone_number
-      context.twilio_client = TwilioClient.new
     end
 
     def call
-      TwilioConfirmMessageJob.perform_now(
+      TwilioConfirmMessageJob.perform_later(
         context.phone_number,
-        context.code,
-        context.twilio_client
+        context.code
       )
     end
   end

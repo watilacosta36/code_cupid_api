@@ -78,7 +78,14 @@ module Api
       end
 
       def permitted_params
-        params.require(:user).permit(:email, :password, :gender, :phone_number, :confirmation_code)
+        params.require(:user).permit(
+          :email,
+          :password,
+          :gender,
+          :phone_number,
+          :confirmation_code,
+          :role
+        )
       end
     end
   end
