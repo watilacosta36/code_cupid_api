@@ -6,14 +6,16 @@ module Api
       before_action :authorize_resource
 
       def create
-        record = User.find(params[:user_id])
-        attachment = ActiveStorage::Attachment.new(record:, name: :images)
-        authorize attachment, policy_class: UserImagePolicy
+        user = User.find_by(id: params[:user_id])
 
-        json_response(user, params)
-      rescue ActiveRecord::RecordNotFound => e
+        if user.present?
+          attachment = ActiveStorage::Attachment.new(record: user, name: :images)
+          authorize attachment, policy_class: UserImagePolicy
+
+          return json_response(user, params)
+        end
+
         render json: { message: I18n.t('activerecord.models.user.not_found') }, status: :not_found
-        Rails.logger.warn(e)
       end
 
       private
