@@ -33,4 +33,5 @@ group :development do
   # gem "spring"
   gem 'annotate' # Annotate Rails classes with schema information
   gem 'awesome_print'
+  gem 'bullet'
 end

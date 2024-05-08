@@ -9,6 +9,6 @@ class UserImagePolicy < ApplicationPolicy
   end
 
   def create?
-    user.admin? || user == attachment.record
+    user.admin? || (user == attachment.record && user_confirmed?)
   end
 end
