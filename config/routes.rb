@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :admin do
-        resources :users, only: %i[index create update destroy]
+        resources :users, only: %i[index]
       end
 
       post 'auth/sign_up', to: 'auth#sign_up'
