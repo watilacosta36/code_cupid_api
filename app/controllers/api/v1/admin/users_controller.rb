@@ -6,9 +6,9 @@ module Api
       class UsersController < BaseController
         def index
           authorize User
-          users = User.select(:id, :email, :phone_number, :username, :gender, :role)
+          users = User.all
 
-          render json: { users: }, status: :ok
+          render json: Panko::ArraySerializer.new(users, each_serializer: UserSerializer).to_json, status: :ok
         end
 
         def update
@@ -17,7 +17,7 @@ module Api
           result = UpdateUser.call(params: user_params.merge!(id: params[:id]))
 
           if result.success?
-            render json: { user: result.user.id }, status: :ok
+            render json: UserSerializer.new.serialize_to_json(result.user), status: :ok
           else
             render json:  { error: I18n.t('activerecord.models.user.not_found') }
           end

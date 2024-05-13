@@ -10,6 +10,7 @@ gem 'image_processing', '~> 1.2'
 gem 'interactor', '~> 3.0'
 gem 'interactor-rails', '~> 2.0'
 gem 'jwt'
+gem "panko_serializer"
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
 gem 'pundit'

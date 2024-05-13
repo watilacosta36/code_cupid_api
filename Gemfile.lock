@@ -167,6 +167,11 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.4-x86_64-linux)
       racc (~> 1.4)
+    oj (3.16.3)
+      bigdecimal (>= 3.0)
+    panko_serializer (0.8.1)
+      activesupport
+      oj (> 3.11.0, < 4.0.0)
     parallel (1.24.0)
     parser (3.3.1.0)
       ast (~> 2.4.1)
@@ -294,6 +299,7 @@ DEPENDENCIES
   interactor (~> 3.0)
   interactor-rails (~> 2.0)
   jwt
+  panko_serializer
   pg (~> 1.1)
   pry-rails
   puma (>= 5.0)
