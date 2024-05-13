@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :admin do
-        resources :users, only: %i[index]
+        resources :users, only: %i[index update]
       end
 
       post 'auth/sign_up', to: 'auth#sign_up'
@@ -14,7 +14,6 @@ Rails.application.routes.draw do
       patch 'auth/confirm_account', to: 'auth#confirm_account'
       post 'auth/resend_code', to: 'auth#resend_code'
 
-      # Create user images
       post 'users_images/create'
     end
   end

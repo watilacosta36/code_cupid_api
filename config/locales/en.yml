@@ -221,6 +221,8 @@ en:
       create: "We sent a confirmation code by SMS to the registered number. If you haven't received it, click on 'Resend code'."
       resend_code: "Confirmation code resent successfully."
   pundit:
+    user_policy:
+      index?: 'You cannot perform this action.'
     user_image_policy:
       create?: "You can't create images for other users."
   twilio:

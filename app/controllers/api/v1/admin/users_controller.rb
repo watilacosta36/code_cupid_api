@@ -6,9 +6,21 @@ module Api
       class UsersController < BaseController
         def index
           authorize User
-          users = User.select(:email, :phone_number, :username, :gender, :role)
+          users = User.select(:id, :email, :phone_number, :username, :gender, :role)
 
           render json: { users: }, status: :ok
+        end
+
+        def update
+          authorize User
+
+          result = UpdateUser.call(params: user_params.merge!(id: params[:id]))
+
+          if result.success?
+            render json: { user: result.user.id }, status: :ok
+          else
+            render json:  { error: I18n.t('activerecord.models.user.not_found') }
+          end
         end
 
         private

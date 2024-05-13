@@ -5,6 +5,10 @@ class UserPolicy < ApplicationPolicy
     user.admin? && user_confirmed?
   end
 
+  def update?
+    index?
+  end
+
   class Scope < Scope
     def resolve
       if user.admin?
