@@ -23,8 +23,9 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class User < ApplicationRecord
-  has_secure_password validations: false
   has_many_attached :images
+
+  has_secure_password validations: false
 
   REGEX_PHONE_NUMBER = /\A\+?\d{0,3}(\s|-)?\(?\d{3}\)?(\s|-)?\d{3}(\s|-)?\d{4}\z/
 
