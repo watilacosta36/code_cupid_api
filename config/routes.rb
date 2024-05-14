@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       post 'auth/resend_code', to: 'auth#resend_code'
 
       post 'users_images/create'
+
+      resources :likes, only: %i[create]
     end
   end
 end

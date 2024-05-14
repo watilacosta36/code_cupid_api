@@ -19,7 +19,7 @@ module Api
           if result.success?
             render json: UserSerializer.new.serialize_to_json(result.user), status: :ok
           else
-            render json:  { error: I18n.t('activerecord.models.user.not_found') }
+            render json: { error: I18n.t('activerecord.models.user.not_found') }
           end
         end
 
