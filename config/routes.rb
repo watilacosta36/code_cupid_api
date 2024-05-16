@@ -9,16 +9,27 @@ Rails.application.routes.draw do
         resources :users, only: %i[index update]
       end
 
+      #### AUTH START ####
       post 'auth/sign_up', to: 'auth#sign_up'
       post 'auth/login', to: 'auth#login'
       patch 'auth/confirm_account', to: 'auth#confirm_account'
       post 'auth/resend_code', to: 'auth#resend_code'
-
+      #### AUTH END ####
+      #
+      #
+      #### USERS_IMAGES START ####
       post 'users_images/create'
-
+      #### USERS_IMAGES END ####
+      #
+      #
+      #### LIKES START ####
       resources :likes, only: %i[create]
-
+      #
+      #
       post 'dislike', to: 'likes#dislike'
+      #### LIKES END ####
+      #
+      #
     end
   end
 end

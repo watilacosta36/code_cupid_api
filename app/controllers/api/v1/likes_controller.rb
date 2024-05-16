@@ -2,15 +2,20 @@
 
 module Api
   module V1
-    class LikesController < ApplicationController
-      before_action :authorize_resource
-
+    class LikesController < BaseController
       def create
         like = authorize Like.new(like_params)
-        like.save ? render_success(like) : render_errors(like)
+        result = Organizers::LikeUser.call(like:)
+
+        return render_success(result.like) if result.success?
+
+        render_errors(result)
       end
 
       def dislike
+        # dar dislike
+        # verificar se tem match
+        # se tiver match, deleta o match
         dislike = authorize Like.new(like_params)
         dislike.save ? render_success(dislike) : render_errors(dislike)
       end
@@ -24,7 +29,7 @@ module Api
       end
 
       def render_errors(reaction)
-        render json: { errors: reaction.errors.full_messages }, status: :unprocessable_entity
+        render json: { errors: reaction.message }, status: :unprocessable_entity
       end
 
       def like_params

@@ -2,9 +2,7 @@
 
 module Api
   module V1
-    class UsersImagesController < ApplicationController
-      before_action :authorize_resource
-
+    class UsersImagesController < BaseController
       def create
         user = User.find_by(id: params[:user_id])
 

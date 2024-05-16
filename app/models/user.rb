@@ -4,32 +4,38 @@
 #
 # Table name: users
 #
-#  id              :bigint           not null, primary key
-#  birthdate       :date
-#  confirmed_at    :datetime
-#  email           :string
-#  first_name      :string
-#  gender          :string
-#  last_name       :string
-#  password_digest :string
-#  phone_number    :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                :bigint           not null, primary key
+#  bio               :text
+#  birthdate         :date
 #  confirmation_code :string
-#  role            :string           default("auth")
+#  confirmed_at      :datetime
+#  email             :string
+#  gender            :string
+#  locale            :string
+#  password_digest   :string
+#  phone_number      :string
+#  role              :integer
+#  username          :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 # Indexes
 #
 #  index_users_on_email  (email) UNIQUE
 #
 class User < ApplicationRecord
+  # ASSOCIATIONS
   has_many_attached :images
   has_many :likes, as: :likeable
+  has_many :matches, dependent: :destroy
+  has_many :matched_users, through: :matches
+
+  # OTHERS
+  REGEX_PHONE_NUMBER = /\A\+?\d{0,3}(\s|-)?\(?\d{3}\)?(\s|-)?\d{3}(\s|-)?\d{4}\z/
 
   has_secure_password validations: false
 
-  REGEX_PHONE_NUMBER = /\A\+?\d{0,3}(\s|-)?\(?\d{3}\)?(\s|-)?\d{3}(\s|-)?\d{4}\z/
-
+  # VALIDATIONS
   validates :gender, inclusion: { in: %w[m f o] }
   validates :phone_number, presence: true, format: { with: REGEX_PHONE_NUMBER }
   validates :email, presence: true, uniqueness: { message: I18n.t('activerecord.attributes.user.email.taken') }
@@ -38,5 +44,6 @@ class User < ApplicationRecord
 
   validates_with EmailValidator
 
+  # ENUMS
   enum role: { user: 0, admin: 1 }
 end
