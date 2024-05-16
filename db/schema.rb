@@ -46,10 +46,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_13_223719) do
     t.bigint "user_id", null: false
     t.string "likeable_type", null: false
     t.bigint "likeable_id", null: false
+    t.boolean "dislike", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
-    t.index ["user_id", "likeable_type", "likeable_id"], name: "index_likes_on_user_id_and_likeable_type_and_likeable_id", unique: true
+    t.index ["user_id", "likeable_type", "likeable_id", "dislike"], name: "idx_on_user_id_likeable_type_likeable_id_dislike_9be12ba30e", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 

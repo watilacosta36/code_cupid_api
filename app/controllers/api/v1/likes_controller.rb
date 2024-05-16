@@ -7,18 +7,26 @@ module Api
 
       def create
         like = authorize Like.new(like_params)
+        like.save ? render_success(like) : render_errors(like)
+      end
 
-        if like.save
-          render json: { like:}, status: :created
-        else
-          render json: { errors: like.errors }, status: :unprocessable_entity
-        end
+      def dislike
+        dislike = authorize Like.new(like_params)
+        dislike.save ? render_success(dislike) : render_errors(dislike)
       end
 
       private
 
+      def render_success(reaction)
+        render json: reaction, status: :created
+      end
+
+      def render_errors(reaction)
+        render json: { errors: reaction.errors }, status: :unprocessable_entity
+      end
+
       def like_params
-        params.require(:like).permit(:likeable_id, :likeable_type, :user_id)
+        params.require(:like).permit(:likeable_id, :likeable_type, :user_id, :dislike)
       end
     end
   end

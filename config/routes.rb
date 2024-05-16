@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       post 'users_images/create'
 
       resources :likes, only: %i[create]
+
+      post 'dislike', to: 'likes#dislike'
     end
   end
 end
