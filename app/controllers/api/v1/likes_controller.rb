@@ -18,11 +18,13 @@ module Api
       private
 
       def render_success(reaction)
-        render json: reaction, status: :created
+        response = LikeSerializer.new.serialize_to_json(reaction)
+
+        render json: response, status: :created
       end
 
       def render_errors(reaction)
-        render json: { errors: reaction.errors }, status: :unprocessable_entity
+        render json: { errors: reaction.errors.full_messages }, status: :unprocessable_entity
       end
 
       def like_params
