@@ -17,6 +17,9 @@ module Api
         # verificar se tem match
         # se tiver match, deleta o match
         dislike = authorize Like.new(like_params)
+
+        result = Organizers::DislikeUser.call(dislike:)
+
         dislike.save ? render_success(dislike) : render_errors(dislike)
       end
 
