@@ -3,7 +3,8 @@
 module Api
   module V1
     class AuthController < ApplicationController
-      before_action :set_user_by_email, only: %i[login resend_code confirm_account]
+      before_action :find_user_by_confirmation_code, only: :confirm_account
+      before_action :set_user_by_email, only: %i[login resend_code]
       before_action :authorize_resource, except: %i[login sign_up confirm_account resend_code]
       after_action :skip_authorization_method, only: %i[login sign_up confirm_account resend_code]
 
@@ -54,7 +55,7 @@ module Api
       private
 
       def update_confirmation_status(user)
-        return unless user.confirmation_code.eql?(permitted_params[:confirmation_code])
+        return unless user.confirmation_code.eql?(params[:confirmation_code])
 
         user.update_attribute(:confirmed_at, Time.zone.now)
       end
@@ -75,6 +76,10 @@ module Api
         @user ||= User.find_by!(email: permitted_params[:email])
       rescue ActiveRecord::RecordNotFound => e
         render_not_found(e)
+      end
+
+      def find_user_by_confirmation_code
+        @user ||= User.find_by(confirmation_code: params[:confirmation_code])
       end
 
       def permitted_params

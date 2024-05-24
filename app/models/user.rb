@@ -26,7 +26,7 @@
 class User < ApplicationRecord
   # ASSOCIATIONS
   has_many_attached :images
-  has_many :likes, as: :likeable
+  has_many :likes, as: :likeable, dependent: :destroy
   has_many :matches, dependent: :destroy
   has_many :matched_users, through: :matches
 
@@ -36,7 +36,7 @@ class User < ApplicationRecord
   has_secure_password validations: false
 
   # VALIDATIONS
-  validates :gender, inclusion: { in: %w[m f o] }
+  validates :gender, inclusion: { in: %w[m f o] }, on: :update
   validates :phone_number, presence: true, format: { with: REGEX_PHONE_NUMBER }
   validates :email, presence: true, uniqueness: { message: I18n.t('activerecord.attributes.user.email.taken') }
   validates :password, presence: true,
@@ -46,4 +46,12 @@ class User < ApplicationRecord
 
   # ENUMS
   enum role: { user: 0, admin: 1 }
+
+  before_validation :default_role
+
+  private
+
+  def default_role
+    self.role = :user
+  end
 end

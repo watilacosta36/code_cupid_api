@@ -1,9 +1,14 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
+# Create country codes
 #
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+require 'csv'
+
+path = 'db/country_code.csv'
+
+CSV.foreach(path) do |row|
+  unless row[0].eql?('COUNTRY')
+    CountryCode.create!(
+      country: row[0],
+      dialingcode: row[4]
+    )
+  end
+end

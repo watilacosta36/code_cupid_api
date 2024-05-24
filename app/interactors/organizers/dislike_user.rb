@@ -5,7 +5,7 @@ module Organizers
     include Interactor::Organizer
 
     organize CreateDislike,
-             CheckMatch,
-             Unmatch
+             CheckMatch
+             # Unmatch
   end
 end
