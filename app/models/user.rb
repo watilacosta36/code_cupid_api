@@ -49,6 +49,12 @@ class User < ApplicationRecord
 
   before_validation :default_role
 
+  def update_confirmation_status(confirmation_code)
+    return unless self.confirmation_code.eql?(confirmation_code)
+
+    self.update_attribute(:confirmed_at, Time.zone.now)
+  end
+
   private
 
   def default_role

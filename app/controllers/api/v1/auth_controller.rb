@@ -41,8 +41,10 @@ module Api
       end
 
       def confirm_account
-        if update_confirmation_status(@user)
-          return render json: { message: I18n.t('activerecord.models.user.confirm_account.success') }, status: :ok
+        if @user.update_confirmation_status(params[:confirmation_code])
+          return render json: {
+            message: I18n.t('activerecord.models.user.confirm_account.success')
+          }, status: :ok
         end
 
         render json: { message: I18n.t('activerecord.errors.messages.invalid_code') }, status: :unprocessable_entity
@@ -53,12 +55,6 @@ module Api
       end
 
       private
-
-      def update_confirmation_status(user)
-        return unless user.confirmation_code.eql?(params[:confirmation_code])
-
-        user.update_attribute(:confirmed_at, Time.zone.now)
-      end
 
       def render_not_found(error)
         render json: {
