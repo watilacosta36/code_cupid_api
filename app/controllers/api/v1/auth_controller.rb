@@ -41,12 +41,12 @@ module Api
       end
 
       def confirm_account
-        # TODO: Refact this method, because is duplicate render
-        return render json: { message: I18n.t('activerecord.errors.messages.invalid_code') }, status: :unprocessable_entity unless @user
+        if @user&.update_confirmation_status(params[:confirmation_code])
+          token = JwtToken.encode(user_id: @user.id)
 
-        if @user.update_confirmation_status(params[:confirmation_code])
           return render json: {
-            message: I18n.t('activerecord.models.user.confirm_account.success')
+            message: I18n.t('activerecord.models.user.confirm_account.success'),
+            token:
           }, status: :ok
         end
 
