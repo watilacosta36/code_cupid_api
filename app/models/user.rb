@@ -58,6 +58,8 @@ class User < ApplicationRecord
   private
 
   def default_role
+    return if self.role.present?
+
     self.role = :user
   end
 end

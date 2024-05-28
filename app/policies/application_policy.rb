@@ -37,7 +37,7 @@ class ApplicationPolicy
   end
 
   def user_confirmed?
-    !user.confirmed_at.nil?
+    user.confirmed_at.present?
   end
 
   class Scope

@@ -30,6 +30,11 @@ Rails.application.routes.draw do
       #### LIKES END ####
       #
       #
+      #### USER PROFILE START ####
+      resources :user_profiles, only: %i[show]
+      #### USER PROFILE END ####
+      #
+      #
     end
   end
 end
