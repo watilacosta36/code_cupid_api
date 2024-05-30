@@ -11,8 +11,9 @@ module Api
       def login
         if @user&.authenticate(permitted_params[:password])
           token = JwtToken.encode(user_id: @user.id)
+          user_serialized = UserSerializer.new.serialize(@user)
 
-          return render json: { token: }, status: :ok
+          return render json: { token:, user: user_serialized }, status: :ok
         end
 
         render json: { error: I18n.t('activerecord.errors.invalid_credentials') }, status: :unauthorized

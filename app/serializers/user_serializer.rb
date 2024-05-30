@@ -24,5 +24,15 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class UserSerializer < Panko::Serializer
-  attributes :id, :email, :phone_number, :username, :gender, :role
+  attributes :id, :email, :phone_number, :birthdate, :username, :age, :gender, :role, :profile_image
+
+  def age
+    return nil if object.birthdate.nil?
+
+    Date.today.year - object.birthdate.year
+  end
+
+  def profile_image
+    object.images.first.blob
+  end
 end
