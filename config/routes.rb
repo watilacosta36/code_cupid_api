@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :admin do
         resources :users, only: %i[index update]
+        resources :plans, only: %i[index create]
       end
 
       #### AUTH START ####
