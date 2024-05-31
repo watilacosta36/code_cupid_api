@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       #
       #
       #### USER PROFILE START ####
-      resources :user_profiles, only: %i[show]
+      resources :user_profiles, only: %i[show update]
       #### USER PROFILE END ####
       #
       #

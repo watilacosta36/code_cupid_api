@@ -13,6 +13,8 @@ class ApplicationController < ActionController::API
   def authorize_resource
     header = request.headers['Authorization']
 
+    return render json: { errors: ['Not Authorized'] }, status: :unauthorized unless header
+
     @decoded = JwtToken.decode(header).symbolize_keys
     @current_user = User.find(@decoded[:user_id])
   rescue ActiveRecord::RecordNotFound

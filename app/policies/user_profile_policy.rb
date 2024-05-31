@@ -11,4 +11,8 @@ class UserProfilePolicy < ApplicationPolicy
   def show?
     user.id.eql?(user_profile.id)
   end
+
+  def update?
+    show?
+  end
 end
