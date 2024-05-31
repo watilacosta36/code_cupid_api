@@ -33,6 +33,8 @@ class UserSerializer < Panko::Serializer
   end
 
   def profile_image
+    return nil unless object.images.attached?
+
     object.images.first.blob
   end
 end
