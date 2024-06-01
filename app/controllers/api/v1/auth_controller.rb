@@ -79,7 +79,7 @@ module Api
       end
 
       def find_user_by_confirmation_code
-        @user ||= User.find_by(confirmation_code: params[:confirmation_code])
+        @find_user_by_confirmation_code ||= User.find_by(confirmation_code: params[:confirmation_code])
       end
 
       def permitted_params

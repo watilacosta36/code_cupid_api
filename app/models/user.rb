@@ -54,13 +54,13 @@ class User < ApplicationRecord
   def update_confirmation_status(confirmation_code)
     return unless self.confirmation_code.eql?(confirmation_code)
 
-    self.update_attribute(:confirmed_at, Time.zone.now)
+    update_attribute(:confirmed_at, Time.zone.now)
   end
 
   private
 
   def default_role
-    return if self.role.present?
+    return if role.present?
 
     self.role = :user
   end

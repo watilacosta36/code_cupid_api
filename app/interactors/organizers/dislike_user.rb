@@ -6,6 +6,6 @@ module Organizers
 
     organize CreateDislike,
              CheckMatch
-             # Unmatch
+    # Unmatch
   end
 end

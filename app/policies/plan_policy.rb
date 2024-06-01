@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PlanPolicy < ApplicationPolicy
   def index?
     user.admin? && user_confirmed?
