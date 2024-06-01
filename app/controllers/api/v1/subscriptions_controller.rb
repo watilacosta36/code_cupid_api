@@ -13,6 +13,16 @@ module Api
         end
       end
 
+      def show_active_subscription
+        subscription = authorize Subscription.find_by(user_id: subscription_params[:user_id], active: true)
+
+        if subscription
+          render json: { subscription: }, status: :ok
+        else
+          render json: { errors: subscription.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
       private
 
       def subscription_params

@@ -30,4 +30,13 @@ class Subscription < ApplicationRecord
   validates :user, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
+  validates :active, inclusion: { in: [true, false] }
+
+  before_validation :set_active, on: :create
+
+  private
+
+  def set_active
+    self.active = true
+  end
 end

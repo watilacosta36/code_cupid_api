@@ -37,7 +37,11 @@ Rails.application.routes.draw do
       #
       #
       #### SUBSCRIPTIONS START ####
-      resources :subscriptions, only: %i[create]
+      resources :subscriptions, only: %i[create] do
+        collection do
+          get 'active', to: 'subscriptions#show_active_subscription'
+        end
+      end
       #### SUBSCRIPTIONS END ####
       #
       #
