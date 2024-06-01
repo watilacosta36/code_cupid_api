@@ -1,0 +1,7 @@
+es:
+  activerecord:
+    models:
+      plan:
+        one: Plan
+        other: Planes
+        not_found: 'Plan no encontrado'

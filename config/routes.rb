@@ -36,6 +36,11 @@ Rails.application.routes.draw do
       #### USER PROFILE END ####
       #
       #
+      #### SUBSCRIPTIONS START ####
+      resources :subscriptions, only: %i[create]
+      #### SUBSCRIPTIONS END ####
+      #
+      #
     end
   end
 end
