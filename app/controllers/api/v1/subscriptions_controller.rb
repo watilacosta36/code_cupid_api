@@ -17,7 +17,7 @@ module Api
         subscription = authorize Subscription.find_by(user_id: subscription_params[:user_id], active: true)
 
         if subscription
-          render json: { subscription: }, status: :ok
+          render json: { subscription: SubscriptionSerializer.new.serialize(subscription) }, status: :ok
         else
           render json: { errors: subscription.errors.full_messages }, status: :unprocessable_entity
         end
