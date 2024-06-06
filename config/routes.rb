@@ -45,6 +45,11 @@ Rails.application.routes.draw do
       #### SUBSCRIPTIONS END ####
       #
       #
+      #### PLANS START ####
+      resources :plans, only: %i[index]
+      #### PLANS END ####
+      #
+      #
     end
   end
 end

@@ -2,11 +2,7 @@
 
 class PlanPolicy < ApplicationPolicy
   def index?
-    user.admin? && user_confirmed?
-  end
-
-  def create?
-    index?
+    user_confirmed?
   end
 
   class Scope < Scope

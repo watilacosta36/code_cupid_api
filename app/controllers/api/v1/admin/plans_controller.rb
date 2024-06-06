@@ -5,14 +5,14 @@ module Api
     module Admin
       class PlansController < BaseController
         def index
-          authorize Plan
+          authorize([:admin, Plan])
           plans = Plan.select(:id, :name, :duration_in_months, :price)
 
           render json: { plans: }, status: :ok
         end
 
         def create
-          plan = authorize Plan.new(plans_params)
+          plan = authorize([:admin, Plan.new(plans_params)])
 
           if plan.save
             render json: { plan: }, status: :created
