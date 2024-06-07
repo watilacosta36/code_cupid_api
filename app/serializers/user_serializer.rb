@@ -26,6 +26,8 @@
 class UserSerializer < Panko::Serializer
   attributes :id, :email, :phone_number, :birthdate, :username, :age, :gender, :role, :profile_image
 
+  has_one :subscription
+
   def age
     return nil if object.birthdate.nil?
 

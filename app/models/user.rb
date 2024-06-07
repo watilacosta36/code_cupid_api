@@ -29,8 +29,8 @@ class User < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :matches, dependent: :destroy
   has_many :matched_users, through: :matches
-  has_many :subscriptions
-  has_many :plans, through: :subscriptions
+  has_one :subscription
+  has_one :plan, through: :subscription
 
   # OTHERS
   REGEX_PHONE_NUMBER = /\A\+?\d{0,3}(\s|-)?\(?\d{3}\)?(\s|-)?\d{3}(\s|-)?\d{4}\z/
