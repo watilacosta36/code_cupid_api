@@ -38,7 +38,7 @@ class User < ApplicationRecord
   has_secure_password validations: false
 
   # VALIDATIONS
-  validates :gender, inclusion: { in: %w[m f o] }, on: :update
+  validates :gender, inclusion: { in: %w[male female] }, on: :update
   validates :phone_number, presence: true, format: { with: REGEX_PHONE_NUMBER }
   validates :email, presence: true, uniqueness: { message: I18n.t('activerecord.attributes.user.email.taken') }
   validates :password, presence: true,
