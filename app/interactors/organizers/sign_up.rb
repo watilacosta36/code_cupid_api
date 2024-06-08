@@ -6,6 +6,7 @@ module Organizers
 
     organize Auth::CreateAccount,
              Auth::SendConfirmationCode,
-             Auth::UpdateConfirmationCode
+             Auth::UpdateConfirmationCode,
+             CreateFreeSubscription
   end
 end
