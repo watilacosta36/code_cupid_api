@@ -5,7 +5,8 @@ module Api
     class PlansController < BaseController
       def index
         authorize Plan
-        plans_serialized = Panko::ArraySerializer.new(Plan.all, each_serializer: PlanSerializer).to_json
+        plans = Plan.where.not(price: 0.0)
+        plans_serialized = Panko::ArraySerializer.new(plans, each_serializer: PlanSerializer).to_json
 
         render json: plans_serialized, status: :ok
       end
