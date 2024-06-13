@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby '3.3.0'
+ruby '3.3.3'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
@@ -10,6 +10,8 @@ gem 'image_processing', '~> 1.2'
 gem 'interactor', '~> 3.0'
 gem 'interactor-rails', '~> 2.0'
 gem 'jwt'
+gem 'searchkick'
+gem 'opensearch-ruby'
 gem "panko_serializer"
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'

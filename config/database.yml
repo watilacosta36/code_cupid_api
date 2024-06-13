@@ -4,18 +4,19 @@ default: &default
   host: db
   username: postgres
   password: password
+  port: 5432
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: programmers_dating_devel
+  database: code_cupid_devel
 
 test:
   <<: *default
-  database: programmers_dating_test
+  database: code_cupid_test
 
 production:
   <<: *default
-  database: programmers_dating_prod
-  username: programmers_dating
-  password: <%= ENV["CONCURSEIRO_DATE_DATABASE_PASSWORD"] %>
+  database: code_cupid_prod
+  username: code_cupid
+  password: <%= ENV["CODE_CUPID_DATABASE_PASSWORD"] %>

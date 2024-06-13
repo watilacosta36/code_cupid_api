@@ -5,7 +5,7 @@
 # These settings affect all cops. Some can be overridden within specific cops' config.
 AllCops:
   NewCops: enable
-  TargetRubyVersion: 3.3
+  TargetRubyVersion: 3.3.3
   Exclude:
     - 'bin/**/*'
     - 'db/**/*'

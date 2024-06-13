@@ -37,6 +37,8 @@ class User < ApplicationRecord
 
   has_secure_password validations: false
 
+  searchkick
+
   # VALIDATIONS
   validates :gender, inclusion: { in: %w[male female] }, on: :update
   validates :phone_number, presence: true, format: { with: REGEX_PHONE_NUMBER }

@@ -10,6 +10,8 @@ module Api
 
       def login
         if @user&.authenticate(permitted_params[:password])
+          CreateFreeSubscription.call(user: @user) if @user.subscription.nil?
+
           token = JwtToken.encode(user_id: @user.id)
           user_serialized = UserSerializer.new.serialize(@user)
 

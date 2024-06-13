@@ -50,6 +50,11 @@ Rails.application.routes.draw do
       #### PLANS END ####
       #
       #
+      #### TIMELINE START ####
+      resources :timeline, only: %i[index]
+      #### TIMELINE END ####
+      #
+      #
     end
   end
 end
