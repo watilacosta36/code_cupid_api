@@ -6,7 +6,7 @@
 #
 #  id                :bigint           not null, primary key
 #  bio               :text
-#  birthdate         :date
+#  age               :integer
 #  confirmation_code :string
 #  confirmed_at      :datetime
 #  email             :string
@@ -43,15 +43,24 @@ class User < ApplicationRecord
   validates :gender, inclusion: { in: %w[male female] }, on: :update
   validates :phone_number, presence: true, format: { with: REGEX_PHONE_NUMBER }
   validates :email, presence: true, uniqueness: { message: I18n.t('activerecord.attributes.user.email.taken') }
-  validates :password, presence: true,
-                       length: { minimum: 8, too_short: I18n.t('activerecord.errors.password_too_short') }, on: :create
+  validates :password, presence: true, length: { minimum: 8, too_short: I18n.t('activerecord.errors.password_too_short') }, on: :create
 
   validates_with EmailValidator
 
   # ENUMS
   enum role: { user: 0, admin: 1 }
+  enum gender: { male: 0, female: 1 }
+  enum status: { active: 0, inactive: 1 }
 
   before_validation :default_role
+
+  def search_data
+    {
+      status: status,
+      age: age,
+      gender: gender,
+    }
+  end
 
   def update_confirmation_status(confirmation_code)
     return unless self.confirmation_code.eql?(confirmation_code)

@@ -5,6 +5,7 @@ class CreateSubscriptions < ActiveRecord::Migration[7.1]
       t.references :plan, null: false, foreign_key: true
       t.date :start_date, null: false
       t.date :end_date, null: false
+      t.boolean :active, null: false
 
       t.timestamps
     end

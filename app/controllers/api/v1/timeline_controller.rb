@@ -4,16 +4,28 @@ module Api
   module V1
     class TimelineController < BaseController
       def index
-        users = User.search('*')
+        result = UsersSearch.call(params: query_params)
 
-        authorize users, policy_class: TimelinePolicy
+        if result.success?
+          authorize result.users, policy_class: TimelinePolicy
 
-        serialized_users = Panko::ArraySerializer.new(
+          render json: serialize_users(result.users), status: :ok
+        else
+          render json: { error: result.errors }, status: :unprocessable_entity
+        end
+      end
+
+      private
+
+      def serialize_users(users)
+        Panko::ArraySerializer.new(
           users,
           each_serializer: TimelineSerializer
         ).to_json
+      end
 
-        render json: serialized_users, status: :ok
+      def query_params
+        params.permit(:search, :age, :gender)
       end
     end
   end

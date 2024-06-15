@@ -24,11 +24,5 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class TimelineSerializer < Panko::Serializer
-  attributes :id, :username, :age, :gender, :birthdate
-
-  def age
-    return nil if object.birthdate.nil?
-
-    Date.today.year - object.birthdate.year
-  end
+  attributes :id, :username, :age, :gender
 end
