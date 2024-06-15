@@ -4,7 +4,7 @@ class UsersSearch
   include Interactor
 
   before do
-    @query = context.params[:search] || '*'
+    @query = context.params[:search].presence || '*'
     @filters = context.params.except(:search)
   end
 
