@@ -3,15 +3,16 @@
 module Api
   module V1
     class TimelineController < BaseController
+      include RenderJson
+
       def index
-        result = UsersSearch.call(params: query_params)
+        result = search_users
 
         if result.success?
-          authorize result.users, policy_class: TimelinePolicy
-
-          render json: serialize_users(result.users), status: :ok
+          authorize_users(result.users)
+          render_json_response(data: serialize_users(result.users))
         else
-          render json: { error: result.errors }, status: :unprocessable_entity
+          render_json_response(data: { error: result.errors }, status: :unprocessable_entity)
         end
       end
 
@@ -22,6 +23,14 @@ module Api
           users,
           each_serializer: TimelineSerializer
         ).to_json
+      end
+
+      def search_users
+        UsersSearch.call(params: query_params)
+      end
+
+      def authorize_users(users)
+        authorize users, policy_class: TimelinePolicy
       end
 
       def query_params
