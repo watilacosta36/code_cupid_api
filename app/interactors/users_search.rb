@@ -9,10 +9,7 @@ class UsersSearch
   end
 
   def call
-    context.users = User.search(
-      @query,
-      where:,
-    )
+    context.users = User.search(@query, where:, load: false)
   end
 
   private
