@@ -34,7 +34,7 @@ module Api
       end
 
       def query_params
-        params.permit(:search, :age, :gender)
+        params.permit(:search, :age, :gender, :page)
       end
     end
   end

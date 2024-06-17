@@ -12,6 +12,7 @@ gem 'interactor-rails', '~> 2.0'
 gem 'jwt'
 gem 'searchkick'
 gem 'opensearch-ruby'
+gem 'pagy', '~> 8.4'
 gem "panko_serializer"
 gem 'pg', '~> 1.1'
 gem 'puma', '>= 5.0'
