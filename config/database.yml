@@ -13,7 +13,7 @@ development:
 
 staging:
   <<: *default
-  host: 
+  host: dpg-cpph1hdds78s73e8od2g-a
   database: code_cupid_stg
   username: code_cupid_stg_user
   password: r1ZohMS2pP9n00lsib6uKF0i558dSJ3u
