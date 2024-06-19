@@ -11,9 +11,11 @@ development:
   <<: *default
   database: code_cupid_devel
 
-test:
+staging:
   <<: *default
-  database: code_cupid_test
+  database: code_cupid_stg
+  username: code_cupid_stg_user
+  password: r1ZohMS2pP9n00lsib6uKF0i558dSJ3u
 
 production:
   <<: *default
