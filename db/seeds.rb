@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if Rails.env.developmnet?
+if Rails.env.development?
   require 'csv'
   require 'faker'
 
@@ -21,7 +21,6 @@ if Rails.env.developmnet?
   Plan.create!(duration_in_months: 1, name: 'Monthly', price: 19.9)
   Plan.create!(duration_in_months: 6, name: 'Semi-Anually', price: 15.9)
   Plan.create!(duration_in_months: 12, name: 'Anually', price: 12.9)
-
 
   # CREATE USERS
   BATCH_SIZE = 1000
@@ -50,7 +49,7 @@ if Rails.env.developmnet?
       User.insert_all(users)
     end
 
-    puts User.count
+    puts "#{ User.count } users"
   end
 
   User.reindex

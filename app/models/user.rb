@@ -53,6 +53,7 @@ class User < ApplicationRecord
   enum status: { active: 0, inactive: 1 }
 
   before_validation :default_role
+  after_commit :apply_free_plan_subscription
 
   def search_data
     {
@@ -74,5 +75,18 @@ class User < ApplicationRecord
     return if role.present?
 
     self.role = :user
+  end
+
+  def apply_free_plan_subscription
+    return unless self.subscription.nil?
+
+    free_plan = Plan.find_by(price: 0.0)
+
+    Subscription.create!(
+      start_date: DateTime.now,
+      end_date: Time.now.advance(months: free_plan.duration_in_months),
+      user_id: self.id ,
+      plan_id: free_plan.id
+    )
   end
 end
