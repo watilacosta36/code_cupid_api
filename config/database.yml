@@ -11,10 +11,6 @@ development:
   <<: *default
   database: code_cupid_devel
 
-test:
-  <<: *default
-  database: code_cupid_test
-
 production:
   <<: *default
   database: code_cupid_prod
