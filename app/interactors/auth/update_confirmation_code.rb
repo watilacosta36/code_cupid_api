@@ -9,7 +9,7 @@ module Auth
         raise ActiveModel::MissingAttributeError, I18n.t('activerecord.errors.messages.invalid_code')
       end
 
-      context.user.update_attribute(:confirmation_code, context.code)
+      context.users.first.update_attribute(:confirmation_code, context.code)
     rescue ActiveModel::MissingAttributeError => e
       context.fail!(error: e.message)
     end

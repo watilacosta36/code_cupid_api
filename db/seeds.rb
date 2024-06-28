@@ -49,6 +49,9 @@ if Rails.env.development?
       User.insert_all(users)
     end
 
+    newly_created_users = User.order(created_at: :desc).limit(BATCH_SIZE)
+    CreateFreeSubscription.call(users: newly_created_users)
+
     puts "#{ User.count } users"
   end
 

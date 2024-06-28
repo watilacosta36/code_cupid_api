@@ -29,7 +29,7 @@ class User < ApplicationRecord
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :matches, dependent: :destroy
   has_many :matched_users, through: :matches
-  has_one :subscription
+  has_one :subscription, dependent: :destroy
   has_one :plan, through: :subscription
 
   # OTHERS

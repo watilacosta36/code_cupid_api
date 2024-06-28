@@ -9,7 +9,13 @@ class UsersSearch
   end
 
   def call
-    context.users = User.search(
+    context.users = search_users
+  end
+
+  private
+
+  def search_users
+    User.search(
       @query,
       where:,
       load: true,
@@ -17,8 +23,6 @@ class UsersSearch
       per_page: 100
     )
   end
-
-  private
 
   def where
     {

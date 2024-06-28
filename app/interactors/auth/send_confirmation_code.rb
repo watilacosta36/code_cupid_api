@@ -6,7 +6,7 @@ module Auth
 
     before do
       context.code = SecureRandom.alphanumeric(4)
-      context.phone_number = context.user.phone_number
+      context.phone_number = context.users.first.phone_number
     end
 
     def call

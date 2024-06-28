@@ -6,7 +6,7 @@ module Api
       class UsersController < BaseController
         def index
           authorize User
-          users = User.limit(100).includes([:images_attachments, :subscription])
+          users = User.limit(100).includes([:images_attachments, subscription: :plan])
 
           render json: Panko::ArraySerializer.new(users, each_serializer: UserSerializer).to_json, status: :ok
         end
