@@ -36,12 +36,13 @@ if Rails.env.development?
         confirmed_at: Date.today,
         email: Faker::Internet.email,
         password_digest: Faker::Internet.password(min_length: 8) ,
-        gender: Faker::Gender.binary_type,
+        gender: [:male, :female].sample,
         username: Faker::Internet.username,
         phone_number: Faker::PhoneNumber.cell_phone_with_country_code,
         created_at: DateTime.now,
         updated_at: DateTime.now,
-        role: [:admin, :user].sample
+        role: [:admin, :user].sample,
+        status: :active
       }
     end
 

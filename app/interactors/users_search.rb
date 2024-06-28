@@ -19,7 +19,7 @@ class UsersSearch
       @query,
       where:,
       load: true,
-      page: context.params[:page],
+      page: context.params[:page] || 1,
       per_page: 100
     )
   end
@@ -27,8 +27,16 @@ class UsersSearch
   def where
     {
       status: :active,
-      age: @filters[:age],
-      gender: @filters[:gender]
+      age:,
+      gender:
     }
+  end
+
+  def age
+    (@filters[:min_age]..@filters[:max_age])
+  end
+
+  def gender
+    @filters[:gender] || [:male, :female]
   end
 end

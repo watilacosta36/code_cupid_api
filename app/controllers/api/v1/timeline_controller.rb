@@ -34,7 +34,7 @@ module Api
       end
 
       def query_params
-        params.permit(:search, :age, :gender, :page)
+        params.require(:timeline).permit(:search, :min_age, :max_age, :gender, :page)
       end
     end
   end
