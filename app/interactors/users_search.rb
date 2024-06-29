@@ -27,12 +27,12 @@ class UsersSearch
   def where
     {
       status: :active,
-      age:,
+      age: age_range,
       gender:
     }
   end
 
-  def age
+  def age_range
     (@filters[:min_age]..@filters[:max_age])
   end
 
