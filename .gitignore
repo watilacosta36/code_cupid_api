@@ -8,7 +8,7 @@
 /.bundle
 
 # Ignore .idea
-.idea
+.idea/concurseiro_date.iml
 
 # Ignore all environment files (except templates).
 /.env*
