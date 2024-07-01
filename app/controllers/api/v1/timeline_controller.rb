@@ -26,7 +26,7 @@ module Api
       end
 
       def search_users
-        UsersSearch.call(params: query_params)
+        UsersSearch.call(params: query_params, current_user:)
       end
 
       def authorize_users(users)

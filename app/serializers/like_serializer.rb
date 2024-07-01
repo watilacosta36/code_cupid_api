@@ -23,5 +23,5 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class LikeSerializer < Panko::Serializer
-  attributes :user_id, :likeable_type, :likeable_id, :dislike
+  attributes :id, :dislike
 end

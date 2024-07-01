@@ -6,6 +6,7 @@ class UsersSearch
   before do
     @query = context.params[:search].presence || '*'
     @filters = context.params.except(:search, :page)
+    @current_user_id = context.current_user.id
   end
 
   def call
@@ -28,8 +29,16 @@ class UsersSearch
     {
       status: :active,
       age: age_range,
-      gender:
+      gender:,
+      id: { not: liked_user_ids }
     }
+  end
+
+  def liked_user_ids
+    Like.where(
+      user_id: @current_user_id,
+      likeable_type: 'User'
+    ).pluck(:likeable_id)
   end
 
   def age_range

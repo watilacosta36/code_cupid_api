@@ -3,5 +3,7 @@
 class NotifyUserMatch
   include Interactor
 
-  def call; end
+  def call
+    Rails.logger.warn("NOTIFICAR USUÁRIO SOBRE MATCH")
+  end
 end
