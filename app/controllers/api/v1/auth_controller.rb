@@ -9,16 +9,15 @@ module Api
       after_action :skip_authorization_method, only: %i[login sign_up confirm_account resend_code]
 
       def login
-        if @user&.authenticate(permitted_params[:password])
-          CreateFreeSubscription.call(users: [@user]) if @user.subscription.nil?
+        result = Organizers::LoginUser.call(user: @user, password: permitted_params[:password])
 
-          token = JwtToken.encode(user_id: @user.id)
+        if result.success?
           user_serialized = UserSerializer.new.serialize(@user)
 
-          return render json: { token:, user: user_serialized }, status: :ok
+          render json: { token: result.token, user: user_serialized }, status: :ok
+        else
+          render json: { error: result.error }, status: :unauthorized
         end
-
-        render json: { error: I18n.t('activerecord.errors.invalid_credentials') }, status: :unauthorized
       rescue JWT::EncodeError => e
         render json: { error: e }, status: :internal_server_error
       end

@@ -10,6 +10,8 @@ class CreateFreeSubscription
 
   def call
     context.users.each do |user|
+      next if user&.subscription.present?
+
       context.subscriptions << {
         start_date: Date.today,
         end_date: Date.today.next_year,
