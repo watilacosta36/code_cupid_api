@@ -4,7 +4,7 @@ class CreateLike
   include Interactor
 
   def call
-    context.like.save!
+    context.reaction.save!
   rescue ActiveRecord::RecordInvalid => e
     context.fail!(message: e.message)
   end

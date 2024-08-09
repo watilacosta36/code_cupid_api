@@ -6,9 +6,10 @@ class CheckMatch
   def call
     return unless matched?
 
+    binding.pry
     context.match = Match.new(
-      user_id: context.like.user_id,
-      matched_user_id: context.like.likeable_id,
+      user_id: context.reaction.user_id,
+      matched_user_id: context.reaction.likeable_id,
       matched_at: Time.zone.now
     )
 
@@ -21,8 +22,8 @@ class CheckMatch
 
   def matched?
     Like.find_by(
-      likeable_id: context.like.user_id,
-      user_id: context.like.likeable_id,
+      likeable_id: context.reaction.user_id, # current_user liked by likeable user
+      user_id: context.reaction.likeable_id, # likeable user liked by current_user
       likeable_type: 'User',
       dislike: false
     )

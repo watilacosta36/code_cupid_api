@@ -4,7 +4,7 @@ class CreateDislike
   include Interactor
 
   def call
-    context.dislike.save!
+    context.reaction.save!
   rescue ActiveRecord::RecordInvalid => e
     context.fail!(message: e.message)
   end

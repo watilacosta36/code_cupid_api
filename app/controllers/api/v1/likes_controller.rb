@@ -4,23 +4,19 @@ module Api
   module V1
     class LikesController < BaseController
       def create
-        like = authorize Like.new(like_params)
-        result = Organizers::LikeUser.call(like:)
+        reaction = authorize Like.new(like_params)
+        result = Organizers::LikeUser.call(reaction:)
 
-        return render_success(result.like) if result.success?
+        return render_success(result.reaction) if result.success?
 
         render_errors(result)
       end
 
       def dislike
-        # dar dislike
-        # verificar se tem match
-        # se tiver match, deleta o match
-        dislike = authorize Like.new(like_params)
+        reaction = authorize Like.new(like_params)
+        Organizers::DislikeUser.call(reaction:)
 
-        Organizers::DislikeUser.call(dislike:)
-
-        dislike.save ? render_success(dislike) : render_errors(dislike)
+        reaction.save ? render_success(reaction) : render_errors(reaction)
       end
 
       private
