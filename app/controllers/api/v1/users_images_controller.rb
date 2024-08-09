@@ -4,18 +4,21 @@ module Api
   module V1
     class UsersImagesController < BaseController
       def create
-        result = CreateUserImage.call(params:)
+        result = CreateUserImage.call(user: find_user)
+        authorize result.attachment, policy_class: UserImagePolicy
 
-        if result.success?
-          authorize result.attachment, policy_class: UserImagePolicy
-          json_response(result.user, params)
-        else
-          render json: { message: result.message },
-                 status: :unprocessable_entity unless result.success?
-        end
+        return render json: {
+          message: result.message
+        }, status: :unprocessable_entity unless result.success?
+
+        json_response(result.user, params)
       end
 
       private
+
+      def find_user
+        User.find_by(id: params[:user_id])
+      end
 
       def json_response(user, params)
         attach_image_result = AttachImage.call(user:, images: params[:images])

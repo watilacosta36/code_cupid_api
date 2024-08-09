@@ -4,11 +4,11 @@ class UserImagePolicy < ApplicationPolicy
   attr_reader :attachment
 
   def initialize(user, attachment)
-    super(user, attachment.record)
+    super(user, attachment&.record)
     @attachment = attachment
   end
 
   def create?
-    user.admin? || (user == attachment.record && user_confirmed?)
+    user.admin? || (user == attachment&.record && user_confirmed?)
   end
 end
