@@ -1,7 +1,7 @@
 FROM ruby:3.3.3-slim-bullseye
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential  postgresql-client git libpq-dev libvips pkg-config
+    apt-get install --no-install-recommends -y build-essential  postgresql-client git libpq-dev libvips pkg-config vim
 
 ENV BUNDLER_VERSION=2.5.6
 ENV ELASTICSEARCH_URL=http://opensearch:9200

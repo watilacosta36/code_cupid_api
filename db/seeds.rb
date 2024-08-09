@@ -35,7 +35,7 @@ if Rails.env.development?
         confirmation_code: SecureRandom.alphanumeric(4),
         confirmed_at: Date.today,
         email: Faker::Internet.email,
-        password_digest: Faker::Internet.password(min_length: 8) ,
+        password_digest: Faker::Internet.password(min_length: 8),
         gender: [:male, :female].sample,
         username: Faker::Internet.username,
         phone_number: Faker::PhoneNumber.cell_phone_with_country_code,

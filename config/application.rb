@@ -37,6 +37,9 @@ module ConcurseiroDate
 
     config.middleware.use config.session_store, config.session_options
 
+    config.filter_parameters += [:images]
+
+
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
