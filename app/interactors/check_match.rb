@@ -6,7 +6,6 @@ class CheckMatch
   def call
     return unless matched?
 
-    binding.pry
     context.match = Match.new(
       user_id: context.reaction.user_id,
       matched_user_id: context.reaction.likeable_id,
