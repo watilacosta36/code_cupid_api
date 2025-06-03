@@ -10,10 +10,10 @@ module Auth
     end
 
     def call
-      # TwilioConfirmMessageJob.perform_later(
-      #   context.phone_number,
-      #   context.code
-      # )
+      ConfirmMessageJob.perform_later(
+        context.phone_number,
+        context.code
+      )
     end
   end
 end

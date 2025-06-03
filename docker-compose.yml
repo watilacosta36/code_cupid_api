@@ -4,21 +4,21 @@ services:
     container_name: opensearch
     environment:
       - network.host=0.0.0.0
-      - discovery.type=single-node
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.type=single-node # standalone sem cluster
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m" # qtd Ram p/ JVM
       - DISABLE_SECURITY_PLUGIN=true
     ulimits:
-      memlock:
+      memlock: # implede que seja swapada para disco / melhora a performance
         soft: -1
         hard: -1
-      nofile:
+      nofile: # limite de arquivos abertos
         soft: 65536
         hard: 65536
     volumes:
       - opensearch-data:/usr/share/opensearch/data
     ports:
-      - 9200:9200
-      - 9600:9600
+      - 9200:9200 # main port
+      - 9600:9600 # monitoring / performance port
     networks:
       - app-network
 
@@ -39,10 +39,10 @@ services:
       context: .
       dockerfile: Dockerfile
     command: bash -c "rm -f tmp/pids/server.pid && bundle install && rails s -b '0.0.0.0' -p '3000'"
-    stdin_open: true
-    tty: true
+    stdin_open: true # acesso interativo p/ debugging
+    tty: true # interface de terminal
     volumes:
-      - .:/home/programmers_dating
+      - .:/home/code_cupid
     ports:
       - "3000:3000"
     depends_on:
@@ -57,7 +57,7 @@ services:
     build: .
     command: bundle exec rake solid_queue:start
     volumes:
-      - .:/home/programmers_dating
+      - .:/home/code_cupid
     depends_on:
       - db
       - opensearch

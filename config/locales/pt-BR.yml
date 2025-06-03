@@ -233,5 +233,5 @@ pt-BR:
       index?: 'Você não pode realizar esta ação.'
     user_image_policy:
       create?: "Você não pode criar imagens para outros usuários."
-  twilio:
+  sms:
     confirm_message: "Seu código de confirmação é %{code}."

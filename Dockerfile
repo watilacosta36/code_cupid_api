@@ -6,9 +6,9 @@ RUN apt-get update -qq && \
 ENV BUNDLER_VERSION=2.5.6
 ENV ELASTICSEARCH_URL=http://opensearch:9200
 
-WORKDIR /home/programmers_dating
-COPY Gemfile /home/programmers_dating/Gemfile
-COPY Gemfile.lock /home/programmers_dating/Gemfile.lock
+WORKDIR /home/code_cupid
+COPY Gemfile /home/code_cupid/Gemfile
+COPY Gemfile.lock /home/code_cupid/Gemfile.lock
 
 RUN gem install bundler -v $BUNDLER_VERSION
 RUN bundle install

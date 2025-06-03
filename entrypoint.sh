@@ -2,7 +2,7 @@
 set -e
 
 # Remove a potentially pre-existing server.pid for Rails.
-rm -f /home/programmers_dating/tmp/pids/server.pid
+rm -f /home/code_cupid/tmp/pids/server.pid
 
 # Then exec the container's main process (what's set as CMD in the Dockerfile).
 exec "$@"
