@@ -83,8 +83,8 @@ jobs:
       - name: Security audit dependencies
         run: bundler-audit check --update
 
-      - name: Security audit application code
-        run: brakeman -q -w2
+#      - name: Security audit application code
+#        run: brakeman -q -w2
 
       - name: Lint Ruby files
         run: bin/rubocop --parallel

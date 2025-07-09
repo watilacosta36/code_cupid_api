@@ -46,6 +46,6 @@ class UsersSearch
   end
 
   def gender
-    @filters[:gender] || [:male, :female]
+    @filters[:gender] || %i[male female]
   end
 end

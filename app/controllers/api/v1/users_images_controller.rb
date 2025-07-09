@@ -7,9 +7,11 @@ module Api
         result = CreateUserImage.call(user: find_user)
         authorize result.attachment, policy_class: UserImagePolicy
 
-        return render json: {
-          message: result.message
-        }, status: :unprocessable_entity unless result.success?
+        unless result.success?
+          return render json: {
+            message: result.message
+          }, status: :unprocessable_entity
+        end
 
         json_response(result.user, params)
       end
@@ -23,8 +25,10 @@ module Api
       def json_response(user, params)
         attach_image_result = AttachImage.call(user:, images: params[:images])
 
-        return render json: { message: I18n.t('activerecord.attributes.user.images.create.error') },
-               status: :unprocessable_entity unless attach_image_result.success?
+        unless attach_image_result.success?
+          return render json: { message: I18n.t('activerecord.attributes.user.images.create.error') },
+                        status: :unprocessable_entity
+        end
 
         render json: { message: I18n.t('activerecord.attributes.user.images.create.success') }, status: :ok
       end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ConfirmMessageService
   def initialize(client: SmsClient.default)
     @client = client

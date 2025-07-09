@@ -43,7 +43,8 @@ class User < ApplicationRecord
   validates :gender, inclusion: { in: %w[male female] }, on: :update
   validates :phone_number, presence: true, format: { with: REGEX_PHONE_NUMBER }
   validates :email, presence: true, uniqueness: { message: I18n.t('activerecord.attributes.user.email.taken') }
-  validates :password, presence: true, length: { minimum: 8, too_short: I18n.t('activerecord.errors.password_too_short') }, on: :create
+  validates :password, presence: true,
+                       length: { minimum: 8, too_short: I18n.t('activerecord.errors.password_too_short') }, on: :create
 
   validates_with EmailValidator
 
@@ -59,7 +60,7 @@ class User < ApplicationRecord
     {
       status: status,
       age: age,
-      gender: gender,
+      gender: gender
     }
   end
 
@@ -78,14 +79,14 @@ class User < ApplicationRecord
   end
 
   def apply_free_plan_subscription
-    return unless self.subscription.nil?
+    return unless subscription.nil?
 
     free_plan = Plan.find_by(price: 0.0)
 
     Subscription.create!(
       start_date: DateTime.now,
       end_date: Time.now.advance(months: free_plan.duration_in_months),
-      user_id: self.id ,
+      user_id: id,
       plan_id: free_plan.id
     )
   end
