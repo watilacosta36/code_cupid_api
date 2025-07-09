@@ -69,7 +69,7 @@ jobs:
       - name: Install build tools
         run: |
           apt-get update -qq
-          apt-get install -y build-essential libpq-dev libyaml-dev
+          apt-get install -y build-essential libpq-dev libyaml-dev git
 
       - name: Install gems
         run: |
