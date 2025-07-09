@@ -225,6 +225,7 @@ pt-BR:
       short: "%d de %B, %H:%M"
     pm: pm
   auth:
+    failure: "Login de usuáio falhou. Verifique suas credenciais"
     success:
       create: "Enviamos um código de confirmação por SMS para o número cadastrado. Caso não tenha recebido, clique em 'Reenviar código'."
       resend_code: "Código de confirmação reenviado com sucesso."

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
+ActiveRecord::Schema[7.2].define(version: 2024_06_28_135424) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+    t.index %w[record_type record_id name blob_id], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
@@ -39,7 +39,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
   create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
-    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+    t.index %w[blob_id variation_digest], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "country_codes", force: :cascade do |t|
@@ -56,8 +56,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
     t.boolean "dislike", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["likeable_type", "likeable_id"], name: "index_likes_on_likeable"
-    t.index ["user_id", "likeable_type", "likeable_id", "dislike"], name: "idx_on_user_id_likeable_type_likeable_id_dislike_9be12ba30e", unique: true
+    t.index %w[likeable_type likeable_id], name: "index_likes_on_likeable"
+    t.index %w[user_id likeable_type likeable_id dislike], name: "idx_on_user_id_likeable_type_likeable_id_dislike_9be12ba30e", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -86,8 +86,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
     t.string "concurrency_key", null: false
     t.datetime "expires_at", null: false
     t.datetime "created_at", null: false
-    t.index ["concurrency_key", "priority", "job_id"], name: "index_solid_queue_blocked_executions_for_release"
-    t.index ["expires_at", "concurrency_key"], name: "index_solid_queue_blocked_executions_for_maintenance"
+    t.index %w[concurrency_key priority job_id], name: "index_solid_queue_blocked_executions_for_release"
+    t.index %w[expires_at concurrency_key], name: "index_solid_queue_blocked_executions_for_maintenance"
     t.index ["job_id"], name: "index_solid_queue_blocked_executions_on_job_id", unique: true
   end
 
@@ -96,7 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
     t.bigint "process_id"
     t.datetime "created_at", null: false
     t.index ["job_id"], name: "index_solid_queue_claimed_executions_on_job_id", unique: true
-    t.index ["process_id", "job_id"], name: "index_solid_queue_claimed_executions_on_process_id_and_job_id"
+    t.index %w[process_id job_id], name: "index_solid_queue_claimed_executions_on_process_id_and_job_id"
   end
 
   create_table "solid_queue_failed_executions", force: :cascade do |t|
@@ -120,8 +120,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
     t.index ["active_job_id"], name: "index_solid_queue_jobs_on_active_job_id"
     t.index ["class_name"], name: "index_solid_queue_jobs_on_class_name"
     t.index ["finished_at"], name: "index_solid_queue_jobs_on_finished_at"
-    t.index ["queue_name", "finished_at"], name: "index_solid_queue_jobs_for_filtering"
-    t.index ["scheduled_at", "finished_at"], name: "index_solid_queue_jobs_for_alerting"
+    t.index %w[queue_name finished_at], name: "index_solid_queue_jobs_for_filtering"
+    t.index %w[scheduled_at finished_at], name: "index_solid_queue_jobs_for_alerting"
   end
 
   create_table "solid_queue_pauses", force: :cascade do |t|
@@ -148,8 +148,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
     t.integer "priority", default: 0, null: false
     t.datetime "created_at", null: false
     t.index ["job_id"], name: "index_solid_queue_ready_executions_on_job_id", unique: true
-    t.index ["priority", "job_id"], name: "index_solid_queue_poll_all"
-    t.index ["queue_name", "priority", "job_id"], name: "index_solid_queue_poll_by_queue"
+    t.index %w[priority job_id], name: "index_solid_queue_poll_all"
+    t.index %w[queue_name priority job_id], name: "index_solid_queue_poll_by_queue"
   end
 
   create_table "solid_queue_recurring_executions", force: :cascade do |t|
@@ -158,7 +158,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
     t.datetime "run_at", null: false
     t.datetime "created_at", null: false
     t.index ["job_id"], name: "index_solid_queue_recurring_executions_on_job_id", unique: true
-    t.index ["task_key", "run_at"], name: "index_solid_queue_recurring_executions_on_task_key_and_run_at", unique: true
+    t.index %w[task_key run_at], name: "index_solid_queue_recurring_executions_on_task_key_and_run_at", unique: true
   end
 
   create_table "solid_queue_scheduled_executions", force: :cascade do |t|
@@ -168,7 +168,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
     t.datetime "scheduled_at", null: false
     t.datetime "created_at", null: false
     t.index ["job_id"], name: "index_solid_queue_scheduled_executions_on_job_id", unique: true
-    t.index ["scheduled_at", "priority", "job_id"], name: "index_solid_queue_dispatch_all"
+    t.index %w[scheduled_at priority job_id], name: "index_solid_queue_dispatch_all"
   end
 
   create_table "solid_queue_semaphores", force: :cascade do |t|
@@ -178,7 +178,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_28_135424) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["expires_at"], name: "index_solid_queue_semaphores_on_expires_at"
-    t.index ["key", "value"], name: "index_solid_queue_semaphores_on_key_and_value"
+    t.index %w[key value], name: "index_solid_queue_semaphores_on_key_and_value"
     t.index ["key"], name: "index_solid_queue_semaphores_on_key", unique: true
   end
 

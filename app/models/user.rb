@@ -48,9 +48,9 @@ class User < ApplicationRecord
   validates_with EmailValidator
 
   # ENUMS
-  enum role: { user: 0, admin: 1 }
-  enum gender: { male: 0, female: 1 }
-  enum status: { active: 0, inactive: 1 }
+  enum :role, { user: 0, admin: 1 }
+  enum :gender, { male: 0, female: 1 }
+  enum :status, { active: 0, inactive: 1 }
 
   before_validation :default_role
   after_commit :apply_free_plan_subscription

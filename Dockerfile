@@ -1,9 +1,10 @@
-FROM ruby:3.3.3-slim-bullseye
+FROM ruby:3.4.4-slim-bullseye
 
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential  postgresql-client git libpq-dev libvips pkg-config vim
+    apt-get install --no-install-recommends -y build-essential libyaml-dev postgresql-client git libpq-dev libvips \
+      pkg-config vim
 
-ENV BUNDLER_VERSION=2.5.6
+ENV BUNDLER_VERSION=2.6.9
 ENV ELASTICSEARCH_URL=http://opensearch:9200
 
 WORKDIR /home/code_cupid

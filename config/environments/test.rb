@@ -9,6 +9,7 @@ Rails.application.configure do
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
 
+  config.active_job.queue_adapter = :test
 
   # Settings specified here will take precedence over those in config/application.rb.
 
