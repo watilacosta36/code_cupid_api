@@ -3,5 +3,10 @@
 
 require_relative 'config/application'
 
-Annotate.load_tasks
+begin
+  require 'annotate'
+  Annotate.load_tasks
+rescue LoadError, NameError
+  # Ignored
+end
 Rails.application.load_tasks
