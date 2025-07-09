@@ -80,7 +80,7 @@ jobs:
       - name: Install bundler-audit
         run: gem install bundler-audit
 
-    - name: Security audit dependencies
+      - name: Security audit dependencies
         run: bundler-audit check --update
 
       - name: Security audit application code
