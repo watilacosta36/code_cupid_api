@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: |
           apt-get update -qq
-          apt-get install -y postgresql-client libvips
+          apt-get install -y postgresql-client libvips libpq-dev build-essential libyaml-dev
       - name: Install gems
         run: |
           gem install bundler
