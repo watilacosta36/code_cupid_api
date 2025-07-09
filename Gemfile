@@ -32,6 +32,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   gem 'pry-rails'
   gem 'faker'
+  gem 'brakeman', require: false
 end
 
 group :development do
